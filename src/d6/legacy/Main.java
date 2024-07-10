@@ -54,10 +54,13 @@ public class Main {
         doggy.makeSound();
         // doggy.bark();
         ((Dog) doggy).bark();
+
+        Truck truck1 = new Truck("Truck1");
+        System.out.println(truck1.colorNum); // null
+
+        truck1.colorNum = 3;
+        System.out.println(truck1.colorNum); // 3
     }
-
-
-
 
     public static void refuel(Car car) {
         car.setFuel(100);

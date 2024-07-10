@@ -6,6 +6,7 @@ package d6.legacy;
 public class Truck extends Car {
     // 트럭만 가지는 속성
     private int maxLoad;
+    public int colorNum;
 
     public Truck(String name) {
         super(name);
@@ -15,3 +16,4 @@ public class Truck extends Car {
         return maxLoad;
     }
 }
+
