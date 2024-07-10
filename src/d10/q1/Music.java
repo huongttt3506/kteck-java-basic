@@ -1,17 +1,19 @@
 package d10.q1;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.time.LocalDate;
+
 
 public class Music {
     private String title;
     private String album;
     private String artist;
-    private String release;
+    private LocalDate release;
 
+    public Music() {
+    }
 
-    public Music(String title, String album, String artist, String release) {
+    public Music(String title, String album, String artist, LocalDate release) {
         this.title = title;
         this.album = album;
         this.artist = artist;
@@ -42,71 +44,21 @@ public class Music {
         this.artist = artist;
     }
 
-    public String getRelease() {
+    public LocalDate getRelease() {
         return release;
     }
 
-    public void setRelease(String release) {
+    public void setRelease(LocalDate release) {
         this.release = release;
     }
 
     @Override
     public String toString() {
-        return  "Title: " + title + "\n" +
-                "Album: " + album + "\n" +
-                "Artist: " + artist + "\n" +
-                "Release: " + release + "\n";
+        return "Music{" +
+                "name='" + title + '\'' +
+                ", album='" + album + '\'' +
+                ", artist='" + artist + '\'' +
+                ", release=" + release +
+                '}';
     }
-    public static void saveToFile(List<Music> musicList, String filename) {
-        try
-//        FileWriter fileWriter = new FileWriter(filename);
-//        BufferedWriter writer = new BufferedWriter(fileWriter)
-//          (   BufferedWriter writer = new BufferedWriter(new FileWriter(filename)))
-        {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-            for (Music music : musicList) {
-                StringBuilder lineBuilder = new StringBuilder();
-                lineBuilder.append(music.getTitle()).append(',');
-                lineBuilder.append(music.getAlbum()).append(',');
-                lineBuilder.append(music.getArtist()).append(',');
-                lineBuilder.append(music.getRelease());
-                String line = lineBuilder.toString();
-                writer.write(line);
-                writer.newLine();
-//                writer.write(music.title + "," + music.album + "," + music.artist + "," + music.release);
-//                writer.newLine();
-
-            writer.close();
-            }
-        }
-        catch (IOException e) {
-            System.out.println("데이터 작성을 위한 파일을 열지 못했습니다...");
-            System.out.println(e.getMessage());
-        }
-
-    }
-    public static List<Music> bufferedReader(String filename) {
-        List<Music> music = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(filename);
-             BufferedReader reader = new BufferedReader(fileReader)) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] elements = line.split(",");
-                music.add(new Music(
-                        elements[0],
-                        elements[1],
-                        elements[2],
-                        elements[3]
-                        ));
-            }
-
-        } catch (IOException e) {
-            System.out.println("파일을 열지 못했습니다...");
-            System.out.println(e.getMessage());
-        }
-        return music;
-
-
-    }
-
 }
